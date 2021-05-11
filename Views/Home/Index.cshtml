@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <!-- http://patorjk.com/software/taag/#p=display&h=2&v=0&f=ANSI%20Shadow&t=Storage%20Account%20-%20HNS%20(Data%20Lake) -->
+    <pre class="banner">
+
+███████ ████████  ██████  ██████   █████   ██████  ███████      █████   ██████  ██████  ██████  ██    ██ ███    ██ ████████        
+██         ██    ██    ██ ██   ██ ██   ██ ██       ██          ██   ██ ██      ██      ██    ██ ██    ██ ████   ██    ██           
+███████    ██    ██    ██ ██████  ███████ ██   ███ █████       ███████ ██      ██      ██    ██ ██    ██ ██ ██  ██    ██           
+     ██    ██    ██    ██ ██   ██ ██   ██ ██    ██ ██          ██   ██ ██      ██      ██    ██ ██    ██ ██  ██ ██    ██           
+███████    ██     ██████  ██   ██ ██   ██  ██████  ███████     ██   ██  ██████  ██████  ██████   ██████  ██   ████    ██           
+                                                                                                                                   
+                                                                                                                                   
+       ██   ██ ███    ██ ███████      ██ ██████   █████ ████████  █████      ██       █████  ██   ██ ███████ ██                    
+       ██   ██ ████   ██ ██          ██  ██   ██ ██   ██   ██    ██   ██     ██      ██   ██ ██  ██  ██       ██                   
+       ███████ ██ ██  ██ ███████     ██  ██   ██ ███████   ██    ███████     ██      ███████ █████   █████    ██                   
+       ██   ██ ██  ██ ██      ██     ██  ██   ██ ██   ██   ██    ██   ██     ██      ██   ██ ██  ██  ██       ██                   
+       ██   ██ ██   ████ ███████      ██ ██████  ██   ██   ██    ██   ██     ███████ ██   ██ ██   ██ ███████ ██                    
+                                                                                                                                                                                                                                                                    
+     </pre>
+</div>
+<div class="text-center">
+    <p></p>
+    <p>Click on the button below to store files, with a message, in the Data Lake Gen2 -> Container</p>
+    <p></p>
+
+    <div style="margin-bottom: 20px;">
+        <button id="button" class="btn btn-primary">Don't Push it Bobby</button>
+    </div>
+    <div class="alert alert-primary" role="alert" id="message" style="display: none;"></div>
+    <div class="alert alert-danger" role="alert" id="error" style="display: none;"></div>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    <script>
+        var url = "/api/Demo";
+        $("#button").click(function () {
+            $("#message").text("Loading...");
+            $.get(url)
+                .done(function (data) {
+                    $("#message").text(data).show();
+                })
+                .fail(function (error) {
+                    $("#error").text(JSON.stringify(error)).show();
+                })
+        });</script>
+</div>
