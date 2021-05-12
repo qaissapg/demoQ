@@ -1,0 +1,24 @@
+trigger:
+- main
+
+pool:
+  vmImage: windows-latest
+
+variables:
+  serviceConnection: RG-SIS-App-DRDP-002
+
+steps:
+- task: DRDPResourcePreRelease@0
+  inputs:
+    command: 'get'
+    azureServiceConnection: 'RG-SIS-App-DRDP-002'
+    logicalName: 'sa-dlake002'
+    properties: 'name'
+
+- task: AzureFileCopy@4
+  inputs:
+    SourcePath: '$(Build.SourcesDirectory)/data/qtestdummy.txt'
+    azureSubscription: 'RG-SIS-App-DRDP-002'
+    Destination: 'azureBlob'
+    storage: $(sa-dlake002.name)
+    ContainerName: 'sa-aamakendlake'
