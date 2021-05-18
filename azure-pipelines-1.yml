@@ -14,4 +14,4 @@ steps:
     appConfiguration: infra-app-config
     key: $(sqldbsrv002q).connection-string-ado.net
     outputVariable: connectionstring
-    resolveSecret: true
+    resolveSecret: false
