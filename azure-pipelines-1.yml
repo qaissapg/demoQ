@@ -1,5 +1,5 @@
 variables:
-  serviceConnection: RG-SIS-App-DRDP-001
+  serviceConnection: RG-SIS-App-DRDP-002
   logicalName: sqldbsrv002q
 
 pool:
