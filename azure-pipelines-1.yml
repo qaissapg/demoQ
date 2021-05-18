@@ -1,24 +1,17 @@
-trigger:
-- main
+variables:
+  serviceConnection: RG-SIS-App-DRDP-001
+  logicalName: sqldbsrv002q
 
 pool:
   vmImage: windows-latest
-
-variables:
-  serviceConnection: RG-SIS-App-DRDP-002
-
-steps:
-- task: DRDPResourcePreRelease@0
+ 
+steps: 
+- task: DRDPAppConfiguration@0
+  displayName: ophalen connectionstring
   inputs:
-    command: 'get'
-    azureServiceConnection: 'RG-SIS-App-DRDP-002'
-    logicalName: 'sa-dlake002'
-    properties: 'name'
-
-- task: AzureFileCopy@4
-  inputs:
-    SourcePath: '$(Build.SourcesDirectory)/data/qtestdummy.txt'
-    azureSubscription: 'RG-SIS-App-DRDP-002'
-    Destination: 'azureBlob'
-    storage: $(sa-dlake002.name)
-    ContainerName: 'sa-aamakendlake'
+    command: get
+    azureServiceConnection: $(serviceConnection)
+    appConfiguration: infra-app-config
+    key: $(sqldbsrv002q).connection-string-ado.net
+    outputVariable: connectionstring
+    resolveSecret: true
