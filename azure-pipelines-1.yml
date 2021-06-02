@@ -11,15 +11,11 @@ variables:
   sqlFile: $(build.SourcesDirectory)\qtable.sql
  
 steps:
-- task: AzureMysqlDeployment@1
-  displayName: Deploy table
+- task: MysqlDeploymentOnMachineGroup@1
   inputs:
-    azureSubscription: 'RG-SIS-App-DRDP-002'
+    TaskNameSelector: 'SqlTaskFile'
+    SqlFile: 'qtabel.sql'
     ServerName: 'demosqlsrvq.database.windows.net'
-    DatabaseName: 'demosqldbq'
+    DatabaseName: 'demosqlsrvq'
     SqlUsername: 'sqlqaiss'
     SqlPassword: 'Drdpwachtw00rd'
-    TaskNameSelector: 'SqlTaskFile'
-    SqlFile: '$(Build.SourcesDirectory)/qtabel.sql'
-    IpDetectionMethod: 'AutoDetect'
-    DeleteFirewallRule: false
