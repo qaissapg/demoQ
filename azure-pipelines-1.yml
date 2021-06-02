@@ -1,17 +1,25 @@
+trigger:
+- main
+
+pool: 
+  vmImage: 'windows-latest'
+
 variables:
   serviceConnection: RG-SIS-App-DRDP-002
-  logicalName: sqldbsrv002q
-
-pool:
-  vmImage: windows-latest
+  logicalName: drdp-sql-database
+  logicalNameServer: qaiss-sql-server
+  sqlFile: $(build.SourcesDirectory)\qtable.sql
  
-steps: 
-- task: DRDPAppConfiguration@0
-  displayName: ophalen connectionstring
+steps:
+- task: AzureMysqlDeployment@1
+  displayName: Deploy table
   inputs:
-    command: get
-    azureServiceConnection: $(serviceConnection)
-    appConfiguration: infra-app-config
-    key: $(sqldbsrv002q).connection-string-ado.net
-    outputVariable: connectionstring
-    resolveSecret: false
+    azureSubscription: 'RG-SIS-App-DRDP-002'
+    ServerName: 'demosqlsrvq.database.windows.net'
+    DatabaseName: 'demosqldbq'
+    SqlUsername: 'sqlqaiss'
+    SqlPassword: 'Drdpwachtw00rd'
+    TaskNameSelector: 'SqlTaskFile'
+    SqlFile: '$(Build.SourcesDirectory)/qtabel.sql'
+    IpDetectionMethod: 'AutoDetect'
+    DeleteFirewallRule: false
