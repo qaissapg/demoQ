@@ -1,0 +1,23 @@
+{
+  "dependencies": {
+    "secrets2": {
+      "type": "secrets.user"
+    },
+    "appInsights1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/microsoft.insights/components/qtestpoc-appinisghts",
+      "type": "appInsights.azure",
+      "connectionId": "APPINSIGHTS_CONNECTIONSTRING",
+      "secretStore": "LocalSecretsFile"
+    },
+    "secrets1": {
+      "type": "secrets.user",
+      "connectionId": "VaultUri"
+    },
+    "storage1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Storage/storageAccounts/drdpexpstorageacc",
+      "type": "storage.azure",
+      "connectionId": "StorageAccount",
+      "secretStore": "LocalSecretsFile"
+    }
+  }
+}

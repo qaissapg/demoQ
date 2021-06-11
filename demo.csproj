@@ -4,7 +4,7 @@
 		<TargetFramework>net5.0</TargetFramework>
 		<RootNamespace>Fortune_Demo</RootNamespace>
 		<UserSecretsId>b9451537-4137-41aa-9596-4e98605c3d80</UserSecretsId>
-		<ApplicationInsightsResourceId>/subscriptions/e0ac8990-a061-479a-8968-7ff5138539fe/resourceGroups/RG-SIS-App-DRDP-002/providers/microsoft.insights/components/appinsightsfortunedemo</ApplicationInsightsResourceId>
+		<ApplicationInsightsResourceId>/subscriptions/e0ac8990-a061-479a-8968-7ff5138539fe/resourceGroups/RG-SIS-App-DRDP-001/providers/microsoft.insights/components/qtestpoc-appinisghts</ApplicationInsightsResourceId>
 	</PropertyGroup>
 
 	<ItemGroup>
