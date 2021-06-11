@@ -1,0 +1,21 @@
+trigger:
+- main
+
+pool: 
+  vmImage: 'windows-latest'
+
+variables:
+  serviceConnection: RG-SIS-App-DRDP-002
+  logicalName: drdp-sql-database
+  logicalNameServer: qaiss-sql-server
+  sqlFile: $(build.SourcesDirectory)\qtable.sql
+ 
+steps:
+- task: MysqlDeploymentOnMachineGroup@1
+  inputs:
+    TaskNameSelector: 'SqlTaskFile'
+    SqlFile: 'qtabel.sql'
+    ServerName: 'demosqlsrvq.database.windows.net'
+    DatabaseName: 'demosqlsrvq'
+    SqlUsername: 'sqlqaiss'
+    SqlPassword: 'Drdpwachtw00rd'
